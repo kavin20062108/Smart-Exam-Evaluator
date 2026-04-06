@@ -34,8 +34,8 @@ app.use(
             // Allow if exact match
             if (allowedOrigins.includes(origin)) return callback(null, true);
             
-            // Fix: Allow any netlify or vercel preview URL and handle trailing slashes
-            if (origin.includes('netlify.app') || origin.includes('vercel.app')) return callback(null, true);
+            // Fix: Allow any netlify, vercel, or onrender preview URL
+            if (origin.includes('netlify.app') || origin.includes('vercel.app') || origin.includes('onrender.com')) return callback(null, true);
             
             callback(new Error('Not allowed by CORS'));
         },
