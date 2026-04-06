@@ -27,7 +27,7 @@ const register = async (req, res) => {
         });
     } catch (err) {
         console.error('Register error:', err);
-        return res.status(500).json({ error: 'Registration failed' });
+        return res.status(500).json({ error: 'Registration failed: ' + err.message, stack: err.stack });
     }
 };
 
