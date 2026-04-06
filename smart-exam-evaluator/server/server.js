@@ -30,7 +30,13 @@ app.use(
         origin: function (origin, callback) {
             // Allow requests with no origin (like mobile apps, curl, Postman)
             if (!origin) return callback(null, true);
+            
+            // Allow if exact match
             if (allowedOrigins.includes(origin)) return callback(null, true);
+            
+            // Fix: Allow any netlify preview URL and handle trailing slashes
+            if (origin.includes('netlify.app')) return callback(null, true);
+            
             callback(new Error('Not allowed by CORS'));
         },
         credentials: true,
